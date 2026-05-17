@@ -22,6 +22,13 @@
       "name": "Cardfight!! Vanguard",
       "color": "#00a2ff",
       "articles": [
+        {
+  "type": "testaa",
+  "title": "testyou",
+  "date": "17 May 2026",
+  "img": "https://en.cf-vanguard.com/cardlist/cardsearch/?expansion=220",
+  "content": "testyoumightmmnmnmnmnmnmnmnmnmnmmnnmnmngygygygygygygftftftftftftftftrdedrdrdrdreserdedrdrcctv"
+},
         { 
           "type": "Deck Guide", 
           "title": "Kagero Overlord - เมต้า Tier S ประจำสัปดาห์", 
