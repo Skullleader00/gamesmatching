@@ -1,0 +1,48 @@
+{
+  "ticker": [
+    { "game": "Vanguard", "text": "V Premium Collection 2025 ประกาศวางจำหน่ายแล้ว!" },
+    { "game": "Master Duel", "text": "Season ใหม่เริ่มแล้ว — เมต้าอัปเดตสัปดาห์นี้" },
+    { "game": "Shadowverse", "text": "Rotation format เปลี่ยนแปลง — ดูรายละเอียดที่นี่" }
+  ],
+  "meta_ranking": {
+    "vanguard": [
+      { "name": "Kagero Overlord", "pct": 82, "tier": "S" },
+      { "name": "Shadow Paladin", "pct": 65, "tier": "A" }
+    ],
+    "yugioh": [
+      { "name": "Snake-Eye", "pct": 78, "tier": "S" },
+      { "name": "Branded Despia", "pct": 62, "tier": "A" }
+    ],
+    "shadowverse": [
+      { "name": "Forestcraft Aggro", "pct": 75, "tier": "S" }
+    ]
+  },
+  "games": {
+    "vanguard": {
+      "name": "Cardfight!! Vanguard",
+      "color": "#00a2ff",
+      "articles": [
+        { "type": "Deck Guide", "title": "Kagero Overlord - เมต้า Tier S ประจำสัปดาห์", "date": "15 May 2026", "img": "https://via.placeholder.com/300x200?text=Kagero" },
+        { "type": "Deck Guide", "title": "Shadow Paladin (Luard) - การจัดเด็คและคอมโบพื้นฐาน", "date": "14 May 2026", "img": "https://via.placeholder.com/300x200?text=Shadow+Paladin" },
+        { "type": "News", "title": "V Premium Collection 2025 ประกาศวางจำหน่าย", "date": "12 May 2026", "img": "https://via.placeholder.com/300x200?text=Vanguard+News" }
+      ]
+    },
+    "yugioh": {
+      "name": "Yu-Gi-Oh! Master Duel",
+      "color": "#cd0001",
+      "articles": [
+        { "type": "Meta Report", "title": "Master Duel Season ใหม่อัปเดตล่าสุด", "date": "16 May 2026", "img": "https://via.placeholder.com/300x200?text=Master+Duel" },
+        { "type": "Deck Guide", "title": "วิธีเล่น Swordsoul ในสภาวะเมต้าปัจจุบัน", "date": "14 May 2026", "img": "https://via.placeholder.com/300x200?text=Swordsoul" },
+        { "type": "Deck Guide", "title": "Snake-Eye Deck - เจาะลึกคอมโบระดับโปร", "date": "13 May 2026", "img": "https://via.placeholder.com/300x200?text=Snake-Eye" }
+      ]
+    },
+    "shadowverse": {
+      "name": "Shadowverse: World Beyond",
+      "color": "#e31475",
+      "articles": [
+        { "type": "Tier List", "title": "วิเคราะห์ Rotation Meta หลังแพทช์ใหม่", "date": "17 May 2026", "img": "https://via.placeholder.com/300x200?text=Shadowverse" },
+        { "type": "Deck Guide", "title": "Forestcraft Aggro - จบเกมไวใน 5 เทิร์น", "date": "15 May 2026", "img": "https://via.placeholder.com/300x200?text=Forestcraft" }
+      ]
+    }
+  }
+}

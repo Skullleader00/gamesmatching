@@ -110,7 +110,7 @@
       <h2 class="gm-section-title">Meta Decks & Guides</h2>
     </div>
     <div class="gm-grid" id="content-grid">
-      <!-- Content populated by JavaScript -->
+      <!-- Content populated from JSON -->
     </div>
   </section>
 </main>
@@ -120,69 +120,41 @@
 </footer>
 
 <script>
-  // Mock Data (In a real app, this would be a JSON file or API)
-  const gameData = {
-    vanguard: {
-      name: "Cardfight!! Vanguard",
-      color: "#00a2ff",
-      content: [
-        { type: "Deck Guide", title: "Kagero Overlord - เมต้า Tier S ประจำสัปดาห์", date: "15 May 2026", img: "https://via.placeholder.com/300x200?text=Kagero" },
-        { type: "Deck Guide", title: "Shadow Paladin (Luard) - การจัดเด็คและคอมโบพื้นฐาน", date: "14 May 2026", img: "https://via.placeholder.com/300x200?text=Shadow+Paladin" },
-        { type: "Deck Guide", title: "Royal Paladin (Blaster Blade) - สายสมดุลสำหรับผู้เริ่มต้น", date: "13 May 2026", img: "https://via.placeholder.com/300x200?text=Royal+Paladin" },
-        { type: "News", title: "V Premium Collection 2025 ประกาศวางจำหน่าย", date: "12 May 2026", img: "https://via.placeholder.com/300x200?text=Vanguard+News" },
-        { type: "Review", title: "เจาะลึกการ์ดใหม่จาก Booster Pack 13", date: "10 May 2026", img: "https://via.placeholder.com/300x200?text=Card+Review" }
-      ]
-    },
-    yugioh: {
-      name: "Yu-Gi-Oh! Master Duel",
-      color: "#cd0001",
-      content: [
-        { type: "Meta Report", title: "Master Duel Season ใหม่อัปเดตล่าสุด", date: "16 May 2026", img: "https://via.placeholder.com/300x200?text=Master+Duel" },
-        { type: "Deck Guide", title: "วิธีเล่น Swordsoul ในสภาวะเมต้าปัจจุบัน", date: "14 May 2026", img: "https://via.placeholder.com/300x200?text=Swordsoul" },
-        { type: "Deck Guide", title: "Snake-Eye Deck - เจาะลึกคอมโบระดับโปร", date: "13 May 2026", img: "https://via.placeholder.com/300x200?text=Snake-Eye" },
-        { type: "Deck Guide", title: "Branded Despia - การจัดบอร์ดที่ไม่มีใครหยุดได้", date: "12 May 2026", img: "https://via.placeholder.com/300x200?text=Branded" }
-      ]
-    },
-    shadowverse: {
-      name: "Shadowverse: World Beyond",
-      color: "#e31475",
-      content: [
-        { type: "Tier List", title: "วิเคราะห์ Rotation Meta หลังแพทช์ใหม่", date: "17 May 2026", img: "https://via.placeholder.com/300x200?text=Shadowverse" },
-        { type: "Deck Guide", title: "Forestcraft Aggro - จบเกมไวใน 5 เทิร์น", date: "15 May 2026", img: "https://via.placeholder.com/300x200?text=Forestcraft" },
-        { type: "Deck Guide", title: "Bloodcraft Control - สายยื้อเพื่อชัยชนะ", date: "14 May 2026", img: "https://via.placeholder.com/300x200?text=Bloodcraft" }
-      ]
-    }
-  };
-
-  // Logic to load specific game content based on URL parameter (?g=vanguard)
-  function loadGamePage() {
-    const params = new URLSearchParams(window.location.search);
-    const gameId = params.get('g') || 'vanguard';
-    const data = gameData[gameId];
-
-    if (data) {
-      document.getElementById('page-title-text').innerText = data.name;
-      document.getElementById('game-display-name').innerText = data.name;
-      document.getElementById('game-display-name').style.color = data.color;
+  async function loadGamePage() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const gameId = params.get('g') || 'vanguard';
       
-      const grid = document.getElementById('content-grid');
-      grid.innerHTML = data.content.map(item => `
-        <a href="#" class="gm-card">
-          <img src="${item.img}" alt="${item.title}">
-          <div class="gm-card-info">
-            <span class="gm-card-tag" style="background:${data.color}">${item.type}</span>
-            <h3 class="gm-card-title">${item.title}</h3>
-            <div class="gm-card-meta">
-              <span>By Admin</span>
-              <span>${item.date}</span>
+      const response = await fetch('data.json');
+      const data = await response.json();
+      const game = data.games[gameId];
+
+      if (game) {
+        document.title = `Game Matching - ${game.name}`;
+        document.getElementById('game-display-name').innerText = game.name;
+        document.getElementById('game-display-name').style.color = game.color;
+        
+        const grid = document.getElementById('content-grid');
+        grid.innerHTML = game.articles.map(item => `
+          <a href="#" class="gm-card">
+            <img src="${item.img}" alt="${item.title}">
+            <div class="gm-card-info">
+              <span class="gm-card-tag" style="background:${game.color}">${item.type}</span>
+              <h3 class="gm-card-title">${item.title}</h3>
+              <div class="gm-card-meta">
+                <span>By Admin</span>
+                <span>${item.date}</span>
+              </div>
             </div>
-          </div>
-        </a>
-      `).join('');
+          </a>
+        `).join('');
+      }
+    } catch (error) {
+      console.error('Error loading game data:', error);
     }
   }
 
-  loadGamePage();
+  window.addEventListener('load', loadGamePage);
 </script>
 
 </body>
