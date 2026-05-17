@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Matching - Article</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light-gray: #e3e3e3;
+      --bg-white: #ffffff;
+      --border-gray: #c6c6c6;
+      --text-dark: #333333;
+      --text-muted: #666666;
+      --accent-blue: #00a2ff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg-light-gray); color: var(--text-dark); font-family: 'Sarabun', sans-serif; line-height: 1.6; }
+
+    #gm-header { position: sticky; top: 0; z-index: 9999; border-bottom: 2px solid var(--border-gray); background: white; }
+    .gm-header-top { display: flex; align-items: center; padding: 18px 32px; max-width: 1200px; margin: 0 auto; }
+    .gm-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .gm-logo-emblem img { width: 50px; height: 50px; }
+    .gm-logo-main { font-family: 'Cinzel Decorative', cursive; font-size: 18px; color: var(--accent-blue); }
+
+    .gm-post-container { max-width: 800px; margin: 40px auto; background: white; border: 2px solid var(--border-gray); border-radius: 8px; overflow: hidden; }
+    .gm-post-hero { width: 100%; height: 400px; object-fit: cover; border-bottom: 1px solid var(--border-gray); }
+    .gm-post-content { padding: 40px; }
+    .gm-post-tag { font-size: 12px; background: var(--accent-blue); color: white; padding: 4px 12px; border-radius: 4px; text-transform: uppercase; }
+    .gm-post-title { font-size: 32px; margin: 20px 0; line-height: 1.2; }
+    .gm-post-meta { color: var(--text-muted); font-size: 14px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border-gray); }
+    .gm-post-body { font-size: 18px; color: #444; }
+    .gm-post-body p { margin-bottom: 20px; }
+
+    #gm-footer { background: white; border-top: 2px solid var(--border-gray); padding: 40px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header id="gm-header">
+  <div class="gm-header-top">
+    <a href="index.html" class="gm-logo">
+      <div class="gm-logo-emblem"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663507456357/zLqhWsauNDdZzEYc.webp" alt="Logo"></div>
+      <div class="gm-logo-text"><span class="gm-logo-main">Game Matching</span></div>
+    </a>
+  </div>
+</header>
+
+<main class="gm-post-container">
+  <img id="post-img" src="" class="gm-post-hero">
+  <div class="gm-post-content">
+    <span id="post-tag" class="gm-post-tag">Tag</span>
+    <h1 id="post-title" class="gm-post-title">Loading...</h1>
+    <div class="gm-post-meta">Published by Admin · <span id="post-date">Date</span></div>
+    <div id="post-body" class="gm-post-body">
+      <!-- Article content goes here -->
+    </div>
+  </div>
+</main>
+
+<footer id="gm-footer">Game Matching · Card Game Hub Thailand</footer>
+
+<script>
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    const gameId = params.get('g');
+    const postIdx = params.get('id');
+
+    const response = await fetch('data.json');
+    const data = await response.json();
+    const post = data.games[gameId].articles[postIdx];
+
+    if (post) {
+      document.title = post.title;
+      document.getElementById('post-img').src = post.img;
+      document.getElementById('post-tag').innerText = post.type;
+      document.getElementById('post-tag').style.background = data.games[gameId].color;
+      document.getElementById('post-title').innerText = post.title;
+      document.getElementById('post-date').innerText = post.date;
+      // Convert line breaks to paragraphs
+      document.getElementById('post-body').innerHTML = post.content.split('\n').map(p => `<p>${p}</p>`).join('');
+    }
+  }
+  loadPost();
+</script>
+</body>
+</html>

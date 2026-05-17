@@ -470,13 +470,13 @@
       const recommendedGrid = document.getElementById('recommended-grid');
       const allArticles = [];
       Object.keys(data.games).forEach(gameId => {
-        data.games[gameId].articles.forEach(article => {
-          allArticles.push({...article, gameId});
+        data.games[gameId].articles.forEach((article, index) => {
+          allArticles.push({...article, gameId, index});
         });
       });
       // Simple sort by date (assuming latest first in data.json)
       recommendedGrid.innerHTML = allArticles.slice(0, 4).map(article => `
-        <a href="game.html?g=${article.gameId}" class="gm-meta-deck-card">
+        <a href="post.html?g=${article.gameId}&id=${article.index}" class="gm-meta-deck-card">
           <img src="${article.img}" alt="${article.title}">
           <div class="gm-meta-deck-info">
             <span class="gm-meta-deck-type" style="background:${data.games[article.gameId].color}">${article.type}</span>

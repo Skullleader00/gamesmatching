@@ -22,9 +22,21 @@
       "name": "Cardfight!! Vanguard",
       "color": "#00a2ff",
       "articles": [
-        { "type": "Deck Guide", "title": "Kagero Overlord - เมต้า Tier S ประจำสัปดาห์", "date": "15 May 2026", "img": "https://via.placeholder.com/300x200?text=Kagero" },
-        { "type": "Deck Guide", "title": "Shadow Paladin (Luard) - การจัดเด็คและคอมโบพื้นฐาน", "date": "14 May 2026", "img": "https://via.placeholder.com/300x200?text=Shadow+Paladin" },
-        { "type": "News", "title": "V Premium Collection 2025 ประกาศวางจำหน่าย", "date": "12 May 2026", "img": "https://via.placeholder.com/300x200?text=Vanguard+News" }
+        { 
+          "type": "Deck Guide", 
+          "title": "Kagero Overlord - เมต้า Tier S ประจำสัปดาห์", 
+          "date": "15 May 2026", 
+          "img": "https://via.placeholder.com/300x200?text=Kagero",
+          "content": "Kagero Overlord ยังคงเป็นเด็คที่แข็งแกร่งที่สุดในเมต้านี้ด้วยความสามารถในการรีสแตนด์แวนการ์ด...\nในบทความนี้เราจะมาดูลิสต์เด็คที่นิยมใช้กันในสัปดาห์ที่ผ่านมา..."
+        },
+        { 
+          "type": "Deck Guide", 
+          "title": "Shadow Paladin (Luard) - การจัดเด็คและคอมโบพื้นฐาน", 
+          "date": "14 May 2026", 
+          "img": "https://via.placeholder.com/300x200?text=Shadow+Paladin",
+          "content": "Luard เป็นเด็คที่เน้นการบริหารทรัพยากรและการเรียกเกรด 1 ออกจากเด็ค...\nคอมโบหลักคือการใช้ความสามารถของ Luard ในการสไตรด์ฟรี..."
+        },
+        { "type": "News", "title": "V Premium Collection 2025 ประกาศวางจำหน่าย", "date": "12 May 2026", "img": "https://via.placeholder.com/300x200?text=Vanguard+News", "content": "Bushiroad ประกาศชุดการ์ดใหม่ล่าสุดสำหรับสาย V Premium..." }
       ]
     },
     "yugioh": {

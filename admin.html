@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Matching Admin - Add Post</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Sarabun', sans-serif; padding: 50px; background: #f4f4f4; }
+    .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    h1 { font-size: 20px; margin-bottom: 20px; color: #333; }
+    label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+    input, select, textarea { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; }
+    textarea { height: 150px; }
+    button { background: #00a2ff; color: white; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; }
+    button:hover { background: #0081cc; }
+    #output { margin-top: 30px; padding: 15px; background: #222; color: #0f0; font-family: monospace; font-size: 12px; border-radius: 4px; display: none; white-space: pre-wrap; word-break: break-all; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Add New Post to data.json</h1>
+  
+  <label>Game Category</label>
+  <select id="game">
+    <option value="vanguard">Vanguard</option>
+    <option value="yugioh">Yu-Gi-Oh! Master Duel</option>
+    <option value="shadowverse">Shadowverse</option>
+  </select>
+
+  <label>Article Type (Tag)</label>
+  <input type="text" id="type" placeholder="e.g. Deck Guide, News, Review">
+
+  <label>Title</label>
+  <input type="text" id="title" placeholder="Post Title">
+
+  <label>Image URL</label>
+  <input type="text" id="img" placeholder="https://...">
+
+  <label>Post Content</label>
+  <textarea id="content" placeholder="Write your article here..."></textarea>
+
+  <button onclick="generate()">Generate JSON Code</button>
+
+  <div id="output"></div>
+</div>
+
+<script>
+  function generate() {
+    const game = document.getElementById('game').value;
+    const type = document.getElementById('type').value;
+    const title = document.getElementById('title').value;
+    const img = document.getElementById('img').value;
+    const content = document.getElementById('content').value;
+    const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+    const jsonSnippet = {
+      type: type,
+      title: title,
+      date: date,
+      img: img,
+      content: content
+    };
+
+    const out = document.getElementById('output');
+    out.innerText = 'Copy this snippet and paste it at the top of the "' + game + '" articles list in data.json:\n\n' + JSON.stringify(jsonSnippet, null, 2) + ',';
+    out.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

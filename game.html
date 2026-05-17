@@ -135,8 +135,8 @@
         document.getElementById('game-display-name').style.color = game.color;
         
         const grid = document.getElementById('content-grid');
-        grid.innerHTML = game.articles.map(item => `
-          <a href="#" class="gm-card">
+        grid.innerHTML = game.articles.map((item, index) => `
+          <a href="post.html?g=${gameId}&id=${index}" class="gm-card">
             <img src="${item.img}" alt="${item.title}">
             <div class="gm-card-info">
               <span class="gm-card-tag" style="background:${game.color}">${item.type}</span>
