@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Matching - <span id="page-title-text">Game Page</span></title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reuse core styles from index.html */
+    :root {
+      --bg-light-gray: #e3e3e3;
+      --bg-white: #ffffff;
+      --border-gray: #c6c6c6;
+      --text-dark: #333333;
+      --text-muted: #666666;
+      --accent-pink: #e31475;
+      --accent-blue: #00a2ff;
+      --accent-red: #cd0001;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-light-gray);
+      color: var(--text-dark);
+      font-family: 'Sarabun', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER & NAV ===== */
+    #gm-header {
+      position: sticky; top: 0; z-index: 9999;
+      border-bottom: 2px solid var(--border-gray);
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(10px);
+    }
+    .gm-header-top { display: flex; align-items: center; padding: 18px 32px; max-width: 1200px; margin: 0 auto; }
+    .gm-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .gm-logo-emblem img { width: 50px; height: 50px; object-fit: contain; }
+    .gm-logo-main { font-family: 'Cinzel Decorative', cursive; font-size: 18px; font-weight: 700; color: var(--accent-blue); }
+    
+    #gm-nav { border-top: 1px solid var(--border-gray); padding: 0 32px; max-width: 1200px; margin: 0 auto; }
+    .gm-nav-list { display: flex; list-style: none; }
+    .gm-nav-list a { padding: 12px 18px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
+    .gm-nav-list a:hover { color: var(--accent-blue); }
+
+    /* ===== GAME HEADER ===== */
+    .gm-game-header { 
+      background: var(--bg-white); 
+      padding: 40px 32px; 
+      border-bottom: 2px solid var(--border-gray);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .gm-game-title { font-family: 'Cinzel Decorative', cursive; font-size: 32px; color: var(--accent-blue); margin-bottom: 10px; }
+    .gm-game-subtitle { font-size: 14px; color: var(--text-muted); }
+
+    /* ===== SECTIONS ===== */
+    .gm-section { max-width: 1200px; margin: 0 auto; padding: 0 32px 60px; }
+    .gm-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; border-bottom: 2px solid var(--border-gray); padding-bottom: 10px; }
+    .gm-section-title { font-size: 16px; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
+    .gm-section-title::before { content: ''; width: 4px; height: 20px; background: var(--accent-blue); }
+
+    /* ===== GRID SYSTEMS ===== */
+    .gm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+    
+    /* Article/Deck Card */
+    .gm-card { background: var(--bg-white); border: 2px solid var(--border-gray); border-radius: 8px; overflow: hidden; transition: 0.3s; text-decoration: none; color: inherit; }
+    .gm-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
+    .gm-card img { width: 100%; height: 180px; object-fit: cover; }
+    .gm-card-info { padding: 20px; }
+    .gm-card-tag { font-size: 10px; background: var(--accent-blue); color: white; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+    .gm-card-title { font-size: 15px; margin: 12px 0; font-weight: 600; line-height: 1.5; }
+    .gm-card-meta { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
+
+    /* ===== FOOTER ===== */
+    #gm-footer { background: var(--bg-white); border-top: 2px solid var(--border-gray); padding: 40px; text-align: center; margin-top: auto; }
+  </style>
+</head>
+<body>
+
+<header id="gm-header">
+  <div class="gm-header-top">
+    <a href="index.html" class="gm-logo">
+      <div class="gm-logo-emblem">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663507456357/zLqhWsauNDdZzEYc.webp" alt="Logo">
+      </div>
+      <div class="gm-logo-text">
+        <span class="gm-logo-main">Game Matching</span>
+      </div>
+    </a>
+  </div>
+  <nav id="gm-nav">
+    <ul class="gm-nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="game.html?g=vanguard">Vanguard</a></li>
+      <li><a href="game.html?g=yugioh">Master Duel</a></li>
+      <li><a href="game.html?g=shadowverse">Shadowverse</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="gm-game-header">
+  <h1 id="game-display-name" class="gm-game-title">Loading...</h1>
+  <p id="game-display-subtitle" class="gm-game-subtitle">Card Game Database & Deck Guides</p>
+</div>
+
+<main>
+  <section class="gm-section">
+    <div class="gm-section-header">
+      <h2 class="gm-section-title">Meta Decks & Guides</h2>
+    </div>
+    <div class="gm-grid" id="content-grid">
+      <!-- Content populated by JavaScript -->
+    </div>
+  </section>
+</main>
+
+<footer id="gm-footer">
+  <div class="gm-footer-text">Game Matching · Card Game Hub Thailand</div>
+</footer>
+
+<script>
+  // Mock Data (In a real app, this would be a JSON file or API)
+  const gameData = {
+    vanguard: {
+      name: "Cardfight!! Vanguard",
+      color: "#00a2ff",
+      content: [
+        { type: "Deck Guide", title: "Kagero Overlord - เมต้า Tier S ประจำสัปดาห์", date: "15 May 2026", img: "https://via.placeholder.com/300x200?text=Kagero" },
+        { type: "News", title: "V Premium Collection 2025 ประกาศวางจำหน่าย", date: "12 May 2026", img: "https://via.placeholder.com/300x200?text=Vanguard+News" },
+        { type: "Review", title: "เจาะลึกการ์ดใหม่จาก Booster Pack 13", date: "10 May 2026", img: "https://via.placeholder.com/300x200?text=Card+Review" }
+      ]
+    },
+    yugioh: {
+      name: "Yu-Gi-Oh! Master Duel",
+      color: "#cd0001",
+      content: [
+        { type: "Meta Report", title: "Master Duel Season ใหม่อัปเดตล่าสุด", date: "16 May 2026", img: "https://via.placeholder.com/300x200?text=Master+Duel" },
+        { type: "Deck Guide", title: "วิธีเล่น Swordsoul ในสภาวะเมต้าปัจจุบัน", date: "14 May 2026", img: "https://via.placeholder.com/300x200?text=Swordsoul" }
+      ]
+    },
+    shadowverse: {
+      name: "Shadowverse: World Beyond",
+      color: "#e31475",
+      content: [
+        { type: "Tier List", title: "วิเคราะห์ Rotation Meta หลังแพทช์ใหม่", date: "17 May 2026", img: "https://via.placeholder.com/300x200?text=Shadowverse" }
+      ]
+    }
+  };
+
+  // Logic to load specific game content based on URL parameter (?g=vanguard)
+  function loadGamePage() {
+    const params = new URLSearchParams(window.location.search);
+    const gameId = params.get('g') || 'vanguard';
+    const data = gameData[gameId];
+
+    if (data) {
+      document.getElementById('page-title-text').innerText = data.name;
+      document.getElementById('game-display-name').innerText = data.name;
+      document.getElementById('game-display-name').style.color = data.color;
+      
+      const grid = document.getElementById('content-grid');
+      grid.innerHTML = data.content.map(item => `
+        <a href="#" class="gm-card">
+          <img src="${item.img}" alt="${item.title}">
+          <div class="gm-card-info">
+            <span class="gm-card-tag" style="background:${data.color}">${item.type}</span>
+            <h3 class="gm-card-title">${item.title}</h3>
+            <div class="gm-card-meta">
+              <span>By Admin</span>
+              <span>${item.date}</span>
+            </div>
+          </div>
+        </a>
+      `).join('');
+    }
+  }
+
+  loadGamePage();
+</script>
+
+</body>
+</html>
